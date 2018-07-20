@@ -1,0 +1,13 @@
+.sweetSpinner {
+  text-align: center;
+  display: inline-block;
+  margin: 4em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  margin: 0 1em;
+}
