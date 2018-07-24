@@ -62,7 +62,7 @@ export default class JokeList extends Component {
   };
 
   sortJokes = () => {
-    const sortedJokes = [...this.state.jokes].sort((a, b) => a.votes < b.votes);
+    const sortedJokes = this.state.jokes.sort((a, b) => b.votes - a.votes);
     this.setState({
       jokes: sortedJokes
     });
@@ -70,27 +70,31 @@ export default class JokeList extends Component {
 
   handleUpvote = id => {
     console.log('hey!');
-    this.setState({
-      jokes: this.state.jokes.map(joke => {
-        if (joke.id === id) {
-          joke.votes = joke.votes + 1;
-        }
-        return joke;
-      })
-    });
-    this.sortJokes();
+    this.setState(
+      {
+        jokes: this.state.jokes.map(joke => {
+          if (joke.id === id) {
+            joke.votes = joke.votes + 1;
+          }
+          return joke;
+        })
+      },
+      this.sortJokes
+    );
   };
 
   handleDownvote = id => {
-    this.setState({
-      jokes: this.state.jokes.map(joke => {
-        if (joke.id === id) {
-          joke.votes = joke.votes - 1;
-        }
-        return joke;
-      })
-    });
-    this.sortJokes();
+    this.setState(
+      {
+        jokes: this.state.jokes.map(joke => {
+          if (joke.id === id) {
+            joke.votes = joke.votes - 1;
+          }
+          return joke;
+        })
+      },
+      this.sortJokes
+    );
   };
   render() {
     if (!this.state.loading) {
